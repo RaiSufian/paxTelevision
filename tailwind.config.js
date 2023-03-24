@@ -12,7 +12,9 @@ module.exports = {
       'white': "#ffffff",
       'darkText': '#0F0F0F',
       'black':"#000",
-      'darkBlue':'#0E1635'
+      'darkBlue':'#0E1635',
+      'gray':'#5F5F5F',
+      'skin':'#fff1aab0',
 
     },
     extend: {
