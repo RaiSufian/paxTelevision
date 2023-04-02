@@ -1,6 +1,21 @@
 .slick-next {
-    right: 0px !important;
+    right: 30px !important;
+    z-index: 999;
+    width: 50px !important;
+    height: 50px !important;
+    color: #fff !important;
 }
-.slick-prev{
-    left: 0px !important;
+
+.slick-prev {
+    left: 30px !important;
+    z-index: 999;
+    width: 50px !important;
+    height: 50px !important;
+    color: #fff !important;
+    transform: rotateY(180deg) translate(0, -50%) !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #000 !important;
 }

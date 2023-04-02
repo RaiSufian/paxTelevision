@@ -1,13 +1,15 @@
 import Slider from "react-slick";
 import SliderCard from "../../components/SliderCard/sliderCard";
+import { Icon } from '@iconify/react';
 const SericesList = ({ title }) => {
     var settings = {
         dots: false,
         infinite: false,
-        speed: 500,
+        className: "center",
+        infinite: true,
         slidesToShow: 5,
-        slidesToScroll: 4,
-        initialSlide: 0,
+        prevArrow: <Icon icon="ic:outline-navigate-next" />,
+        nextArrow: <Icon icon="ic:outline-navigate-next" />,
         responsive: [
             {
                 breakpoint: 1024,
@@ -37,9 +39,21 @@ const SericesList = ({ title }) => {
     };
     return (
         <section className="bg-black text-white pb-5">
-            <h2 className="mb-3 px-40 text-[#a8a8a8] text-3xl font-bold tracking-widest py-6">{title}</h2>
+            <h2 className="mb-3 lg:px-40 md:px-20 px-5 text-[#a8a8a8] text-4xl font-bold tracking-widest py-6">{title}</h2>
             <div>
                 <Slider {...settings}>
+                    <div>
+                        <SliderCard />
+                    </div>
+                    <div>
+                        <SliderCard />
+                    </div>
+                    <div>
+                        <SliderCard />
+                    </div>
+                    <div>
+                        <SliderCard />
+                    </div>
                     <div>
                         <SliderCard />
                     </div>
