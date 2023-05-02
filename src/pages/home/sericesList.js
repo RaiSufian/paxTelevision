@@ -1,7 +1,8 @@
 import Slider from "react-slick";
 import SliderCard from "../../components/SliderCard/sliderCard";
 import { Icon } from '@iconify/react';
-const SericesList = ({ title }) => {
+const SericesList = ({ title, allVideos }) => {
+
     var settings = {
         dots: false,
         infinite: false,
@@ -38,46 +39,18 @@ const SericesList = ({ title }) => {
         ]
     };
     return (
-        <section className="bg-black text-white pb-5">
+        <section className="pb-5 text-white bg-black">
             <h2 className="mb-3 lg:px-40 md:px-20 px-5 text-[#a8a8a8] text-4xl font-bold tracking-widest py-6">{title}</h2>
             <div>
                 <Slider {...settings}>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
-                    <div>
-                        <SliderCard />
-                    </div>
+                    {allVideos && allVideos.map((item) => {
+                        return (
+                            <div>
+                                <SliderCard image={item.thumbnail} name={item.name} />
+                            </div>
+                        )
+                    })}
+
                 </Slider>
             </div>
         </section>

@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
-const SliderCard = () => {
+const SliderCard = ({ name, image }) => {
     return (
-        <div className="w-full flex justify-center">
+        <div className="flex justify-center w-full">
             <Link to="/webserices" className="relative w-full px-3">
-                <img src="/images/promptImf.webp" className="w-full" />
-                <div className="p-5 bg-black absolute top-0 bottom-0 w-full z-10 opacity-0 hover:opacity-80 flex items-end">
+                <img src={image} className="w-full" />
+                <div className="absolute top-0 bottom-0 z-10 flex items-end w-full p-5 bg-black opacity-0 hover:opacity-80">
                     <div className="text-[#a8a8a8]">
-                        <h3 >The Father I Never Knew</h3>
-                        <p className="text-sm">PAX Television The Father I Never Knew</p>
+                        <h3 >{name}</h3>
+                        <p className="text-sm">PAX Television {name}</p>
                     </div>
-
                 </div>
             </Link>
 
