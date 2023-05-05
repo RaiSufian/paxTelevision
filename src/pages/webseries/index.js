@@ -56,20 +56,39 @@ const WebSeries = () => {
 
         setSubcollectionData(data);
     };
+
+    const fetchEpisodes = () => {
+        const seasonView = firebase.firestore().collection('seasons');
+        // Reference the first nested subcollection
+        const allSeasonView = seasonView.doc(id).collection('all_seasons');
+
+        // Reference the second nested subcollection
+        const allEpisodes = allSeasonView.doc(subcollectionData?.id).collection('episodes');
+
+        // Fetch documents from the third nested subcollection
+        allEpisodes.get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(doc.id, ' => ', doc.data());
+            });
+        }).catch((error) => {
+            console.log('Error getting documents: ', error);
+        });
+    }
     // const db = firebase.firestore();
     // const collectionRef = db.collection('seasons');
+
 
     useEffect(() => {
         fetchFirestoreData();
         fetchFirestoreVideos();
         fetchDataSubCollection();
+        fetchEpisodes();
     }, []);
 
     const allVideos = [...seasons, ...videos]
     const singleVideo = allVideos.filter(item => item.id == id)
     const detailVideo = singleVideo[0] && singleVideo[0]
 
-    console.log("Life Program", subcollectionData)
     return (
         <>
             <WebProfile detailVideo={detailVideo} />

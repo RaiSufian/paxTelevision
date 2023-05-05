@@ -33,14 +33,13 @@ const WebProfile = ({ detailVideo }) => {
                                     detailVideo?.hasOwnProperty('playback_link') ?
                                         (
                                             <>
-                                                <div className='w-full h-96' ref={playerRef}></div>
-                                                <iframe
-                                                    title="Dacast video player"
-                                                    src={`https://player.dacast.com/js/player.js?contentId=${detailVideo?.playback_link}&autoplay=1`}
+                                                <div className='w-full h-[300px]' ref={playerRef}></div>
+                                                {/* <iframe
+                                                    src={`https://iframe.dacast.com/vod/${detailVideo?.playback_link}`}
                                                     width="100%"
                                                     height="500"
                                                     allowFullScreen
-                                                ></iframe>
+                                                ></iframe> */}
                                             </>
 
                                         )

@@ -10,7 +10,7 @@ const Findvideos = ({ name, subcollectionData }) => {
                 <div className="flex items-center justify-between py-2">
                     <div className="flex items-center">
                         <Icon icon="mdi:dots-vertical" className="text-2xl" />
-                        <span>{name} All Seasons </span>
+                        <span>{name} All Episodes </span>
                     </div>
                     <div className="relative group">
                         <button className="text-sm text-light_gray">

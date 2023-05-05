@@ -69,10 +69,6 @@ const Home = () => {
     }, []);
 
     const allVideos = [...seasons, ...videos]
-
-
-    console.log("Seasons data", subcollectionData)
-
     const localProgram = allVideos.filter(item => item.description == "Local Programs")
     const daramaProgram = allVideos.filter(item => item.description == "Drama")
     const kidsProgram = allVideos.filter(item => item.description == "Kids")
@@ -81,7 +77,6 @@ const Home = () => {
     const aslProgram = allVideos.filter(item => item.description == "ASL")
     const inspProgram = allVideos.filter(item => item.description == "Inspirational")
     const musicProgram = allVideos.filter(item => item.description == "Music")
-    console.log("Life Program", LifeProgram)
 
     return (
         <>

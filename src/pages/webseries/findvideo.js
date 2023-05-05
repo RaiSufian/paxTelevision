@@ -37,7 +37,7 @@ const Findvideos = ({ name, subcollectionData }) => {
                 <div className="flex flex-wrap">
                     {subcollectionData && subcollectionData.map((item, index) => {
                         return (
-                            <div className="w-full pb-8 lg:w-1/3 md:w-1/2">
+                            <div className="w-full pb-8 lg:w-1/3 md:w-1/2" key={index}>
                                 <SliderCard image={item.thumbnail} name={item.name} link={`/webserices/web-series-episodes/${item.id}`} />
                             </div>
                         )

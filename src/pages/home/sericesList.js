@@ -1,9 +1,11 @@
 import Slider from "react-slick";
+import React, { useContext } from "react"
 import SliderCard from "../../components/SliderCard/sliderCard";
 import { Icon } from '@iconify/react';
+
+
 import Carousel from "react-multi-carousel";
 const SericesList = ({ title, allVideos }) => {
-
 
     const responsive = {
         superLargeDesktop: {
@@ -24,41 +26,11 @@ const SericesList = ({ title, allVideos }) => {
             items: 1
         }
     };
-    var settings = {
-        dots: false,
-        infinite: false,
-        className: "center",
-        infinite: true,
-        slidesToShow: 5,
-        prevArrow: <Icon icon="ic:outline-navigate-next" />,
-        nextArrow: <Icon icon="ic:outline-navigate-next" />,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    };
+
+    const updateSeasonID = (id) => {
+        localStorage.setItem('seasonId', id);
+    }
+
     return (
         <section className="pb-5 text-white bg-black">
             <h2 className="mb-3 lg:px-40 md:px-20 px-5 text-[#a8a8a8] text-4xl font-bold tracking-widest py-6">{title}</h2>
@@ -66,22 +38,12 @@ const SericesList = ({ title, allVideos }) => {
                 <Carousel responsive={responsive}>
                     {allVideos && allVideos.map((item) => {
                         return (
-                            <div>
-                                <SliderCard image={item?.thumbnail} name={item?.name} link={`/webserices/${item?.id}`} />
+                            <div onClick={() => updateSeasonID(item?.id)} key={item?.id} >
+                                <SliderCard image={item?.thumbnail} name={item?.name} link={`/webserices/${item?.id}`} id />
                             </div>
                         )
                     })}
                 </Carousel>
-                {/* <Slider {...settings}>
-                    {allVideos && allVideos.map((item) => {
-                        return (
-                            <div>
-                                <SliderCard image={item.thumbnail} name={item.name} />
-                            </div>
-                        )
-                    })}
-
-                </Slider> */}
             </div>
         </section>
     )

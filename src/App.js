@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useState } from "react"
 import { Routes, Route } from "react-router-dom";
 import Home from './pages/home';
 import Header from './components/header';
@@ -11,9 +12,12 @@ import WebSeries from './pages/webseries';
 import WebSeriesEpisodes from './pages/episides';
 import 'react-multi-carousel/lib/styles.css';
 
+
 function App() {
+
   return (
     <>
+
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
