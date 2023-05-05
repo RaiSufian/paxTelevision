@@ -11,22 +11,13 @@ import firebase from "../../firebase";
 import 'firebase/firestore';
 
 const Home = () => {
-
-    const [info, setInfo] = useState([]);
     const [seasons, setSeasons] = useState([]);
     const [videos, setVideos] = useState([]);
+    const [subcollectionData, setSubcollectionData] = useState([]);
 
-    // Start the fetch operation as soon as
-    // the page loads
-    // window.addEventListener('load', () => {
-    //     Fetchdata();
-    // });
-
-    // Fetch the required data using the get() method
     const fetchFirestoreData = () => {
         const db = firebase.firestore();
         const collectionRef = db.collection('seasons');
-
         collectionRef.get().then((querySnapshot) => {
             const documents = [];
             querySnapshot.forEach((doc) => {
@@ -51,33 +42,46 @@ const Home = () => {
             console.error(error);
         });
     };
+
+    const fetchDataSubCollection = async () => {
+        const db = firebase.firestore();
+
+        // Get a reference to the parent collection
+        const parentCollectionRef = db.collection('seasons');
+
+        // Get a reference to the subcollection using the ID of a document in the parent collection
+        const parentDocRef = parentCollectionRef.doc('KQuGxz1e5JkJ4q6vLtZ4');
+        const subcollectionRef = parentDocRef.collection('all_seasons');
+
+        // Retrieve the data from the subcollection
+        const snapshot = await subcollectionRef.get();
+        const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+        setSubcollectionData(data);
+    };
     // const db = firebase.firestore();
     // const collectionRef = db.collection('seasons');
 
     useEffect(() => {
         fetchFirestoreData();
         fetchFirestoreVideos();
-        // const ref = firebase.firestore().ref('seasons');
-        // ref.on('value', snapshot => {
-        //     const val = snapshot.val();
-        //     setData(val);
-        // });
+        fetchDataSubCollection();
     }, []);
 
     const allVideos = [...seasons, ...videos]
 
 
-    console.log("Seasons data", allVideos)
-    console.log("Videos data", videos)
+    console.log("Seasons data", subcollectionData)
 
     const localProgram = allVideos.filter(item => item.description == "Local Programs")
-    console.log("Local Content", localProgram)
     const daramaProgram = allVideos.filter(item => item.description == "Drama")
     const kidsProgram = allVideos.filter(item => item.description == "Kids")
     const docuProgram = allVideos.filter(item => item.description == "Documentory")
     const LifeProgram = allVideos.filter(item => item.description == "Lifestyle")
-    console.log("Local Content", daramaProgram)
-
+    const aslProgram = allVideos.filter(item => item.description == "ASL")
+    const inspProgram = allVideos.filter(item => item.description == "Inspirational")
+    const musicProgram = allVideos.filter(item => item.description == "Music")
+    console.log("Life Program", LifeProgram)
 
     return (
         <>
@@ -88,9 +92,11 @@ const Home = () => {
             <SericesList title="Drama" allVideos={daramaProgram} />
             <SericesList title="Kids / Family" allVideos={kidsProgram} />
             <SericesList title="Documentry" allVideos={docuProgram} />
-            <VariableSilder title="Lifestyle" allVideos={LifeProgram} />
-            <VariableSilder title="American Sign Language (ASL)" />
-            <Inspirational />
+            <SericesList title="Inspirational" allVideos={inspProgram} />
+            <SericesList title="Music" allVideos={musicProgram} />
+            <SericesList title="Lifestyle" allVideos={LifeProgram && LifeProgram} />
+            <SericesList title="American Sign Language (ASL)" allVideos={aslProgram && aslProgram} />
+            {/* <Inspirational /> */}
             <AboutHome />
             <ContactUs />
         </>

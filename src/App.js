@@ -8,6 +8,8 @@ import Footer from './components/footer';
 import AboutUs from './pages/aboutUs';
 import Stream from './pages/stream';
 import WebSeries from './pages/webseries';
+import WebSeriesEpisodes from './pages/episides';
+import 'react-multi-carousel/lib/styles.css';
 
 function App() {
   return (
@@ -15,7 +17,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/webserices" element={<WebSeries />} />
+        <Route path="/webserices/:id" element={<WebSeries />} />
+        <Route path="/webserices/web-series-episodes/:id" element={<WebSeriesEpisodes />} />
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/stream-buy" element={<Stream />} />
       </Routes>

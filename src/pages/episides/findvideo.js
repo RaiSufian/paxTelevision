@@ -38,7 +38,7 @@ const Findvideos = ({ name, subcollectionData }) => {
                     {subcollectionData && subcollectionData.map((item, index) => {
                         return (
                             <div className="w-full pb-8 lg:w-1/3 md:w-1/2">
-                                <SliderCard image={item.thumbnail} name={item.name} link={`/webserices/web-series-episodes/${item.id}`} />
+                                <SliderCard image={item.thumbnail} name={item.name} link={`/webserices/web-series-episodes/${item?.id}`} />
                             </div>
                         )
                     })}
