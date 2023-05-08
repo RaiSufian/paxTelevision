@@ -1,20 +1,8 @@
 import * as React from 'react';
-import { usePlayer } from 'use-player';
+
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 const WebProfile = ({ detailVideo }) => {
-
-
-    let playerRef = React.useRef(null);
-    let playerOptions = {
-        autoplay: false, // default
-        provider: 'universe', // default
-    };
-    usePlayer(playerRef, detailVideo?.playback_link, playerOptions);
-
-    const src =
-        "https://video.wixstatic.com/video/9cedfb_79db81a409134340a0f53bf408ab2836/1080p/mp4/file.mp4";
-    const dacastPlayLink = `https://video.dacast.com/player/player-${detailVideo?.playback_link}`;
 
     return (
         <section className="px-5 pt-20 pb-10 bg-black">
@@ -33,13 +21,10 @@ const WebProfile = ({ detailVideo }) => {
                                     detailVideo?.hasOwnProperty('playback_link') ?
                                         (
                                             <>
-                                                <div className='w-full h-[300px]' ref={playerRef}></div>
-                                                {/* <iframe
-                                                    src={`https://iframe.dacast.com/vod/${detailVideo?.playback_link}`}
-                                                    width="100%"
-                                                    height="500"
-                                                    allowFullScreen
-                                                ></iframe> */}
+                                                <div className="">
+                                                    <div style={{ position: 'relative', paddingBottom: '56.25%', overflow: 'hidden', height: 0, maxWidth: '100%' }}><iframe
+                                                        src={`https://iframe.dacast.com/vod/${detailVideo?.playback_link.replace("-vod-", "/")}`} width="100%" height="100%" frameBorder={0} scrolling="no" allow="autoplay;encrypted-media" allowFullScreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen style={{ position: 'absolute', top: 0, left: 0 }} /></div>
+                                                </div>
                                             </>
 
                                         )

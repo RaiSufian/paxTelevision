@@ -11,32 +11,13 @@ const WebSeries = () => {
     const { id } = useParams();
     const [subcollectionDataOne, setSubcollectionDataOne] = useState([]);
     const [selectedSeason, setSelectedSeason] = useState('')
+    const [selectedSeasonTitle, setSelectedSeasonTitle] = useState('')
     useEffect(() => {
         const storedSeasons = localStorage.getItem('seasonId');
+        const storedSeasonsTitle = localStorage.getItem('season_name');
         setSelectedSeason(storedSeasons)
+        setSelectedSeasonTitle(storedSeasonsTitle)
     }, []);
-
-    // const fetchDataSubCollection = async () => {
-    //     const db = firebase.firestore();
-
-    //     // Get a reference to the parent collection
-    //     const parentCollectionRef = db.collection('all_seasons');
-
-    //     // Get a reference to the subcollection using the ID of a document in the parent collection
-    //     const parentDocRef = parentCollectionRef.doc(id);
-    //     const subcollectionRef = parentDocRef.collection('episodes');
-
-    //     // Retrieve the data from the subcollection
-    //     const snapshot = await subcollectionRef.get();
-    //     const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-
-    //     setSubcollectionData(data);
-    // };
-    // const db = firebase.firestore();
-    // const collectionRef = db.collection('seasons');
-
-
-
     useEffect(() => {
         setTimeout(async () => {
             const seasonView = firebase.firestore().collection('seasons');
@@ -59,7 +40,7 @@ const WebSeries = () => {
     return (
         <>
             <section className="pb-5 text-white bg-black">
-                <h2 className="mb-3 lg:px-40 md:px-20 px-5 text-[#a8a8a8] text-4xl font-bold tracking-widest py-6"> {subcollectionDataOne[0]?.about} </h2>
+                <h2 className="mb-3 lg:px-40 md:px-20 px-5 text-[#a8a8a8] text-4xl font-bold tracking-widest py-6"> {selectedSeasonTitle} </h2>
             </section>
             {subcollectionDataOne?.length > 0 ?
                 <Findvideos subcollectionData={subcollectionDataOne} /> : ''
