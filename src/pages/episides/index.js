@@ -19,6 +19,9 @@ const WebSeries = () => {
         setSelectedSeasonTitle(storedSeasonsTitle)
     }, []);
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    useEffect(() => {
         setTimeout(async () => {
             const seasonView = firebase.firestore().collection('seasons');
 

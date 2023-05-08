@@ -83,6 +83,10 @@ const WebSeries = () => {
         fetchFirestoreVideos();
         fetchDataSubCollection();
         fetchEpisodes();
+
+    }, []);
+    useEffect(() => {
+        window.scrollTo(0, 0);
     }, []);
 
     const allVideos = [...seasons, ...videos]
