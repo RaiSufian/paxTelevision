@@ -17,6 +17,10 @@ const Header = () => {
         name: "About",
         pathLink: "/aboutUs"
     },
+    {
+        name: "Log In",
+        pathLink: "/login"
+    },
     ]
     return (
         <div className="shadow-inner bg-themeColor">
